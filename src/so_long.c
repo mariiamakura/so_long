@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/05/03 16:13:55 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:03:57 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ void	map_validation(char *map)
 	map_content_check(map_as_str);
 	map_as_arr = ft_split(map_as_str, '\n');
 	free(map_as_str);
+	map_shape_check(map_as_arr);
+	
 	
 /* 	int i = 0;
-	while (i++ > 7 && map_as_arr[i])
-		printf("%s\n", map_as_arr[i]); */
+	while (i++ < 7 && map_as_arr[i])
+		printf("%s\n", map_as_arr[i]);
+	printf("im here"); */
 
 }
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:29 by mparasku          #+#    #+#             */
-/*   Updated: 2023/05/03 16:09:26 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:03:46 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	error_msg(char *str);
 void	check_map_extension(char *file);
 void	map_is_empty(char *map);
 void	map_has_empty_lines(char *map);
+void	map_shape_check(char **map_arr);
 
 //map_reading.c
 char	*map_file_to_str(char *map);
