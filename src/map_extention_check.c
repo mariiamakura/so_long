@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:19 by mparasku          #+#    #+#             */
-/*   Updated: 2023/05/05 16:48:52 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:02:46 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ void	map_shape_check(char **map_arr)
 	}
 	if (i == len)
 		error_msg("Map is a square, give rectangle");
-	printf("i = %zu, len = %zu\n", i, len);
 }
