@@ -13,10 +13,11 @@
 #include "../include/so_long.h"
 
 
-void	map_validation(char *map)
+t_game	*map_validation(char *map)
 {
 	char	*map_as_str;
 	char	**map_as_arr;
+    t_game  *game;
 
 	check_map_extension(map);
 	map_as_str = map_file_to_str(map);
@@ -26,17 +27,24 @@ void	map_validation(char *map)
 	map_as_arr = ft_split(map_as_str, '\n');
 	free(map_as_str);
 	map_shape_check(map_as_arr);
-	
-	
-/* 	int i = 0;
-	while (i++ < 7 && map_as_arr[i])
-		printf("%s\n", map_as_arr[i]);
-	printf("im here"); */
-
+    game = initialize_game(map_as_arr); //grid points to map_as_arr so NO free
+    are_walls(game);
+    path_check_begin(game);
+    return (game);
 }
+
+/*void creating_visual(t_game *game)
+{
+
+}*/
+
 int	main(int argc, char **argv)
 {
+    t_game *game;
 	if (argc != 2)
 		error_msg("Just give me a map! :(");
-	map_validation(argv[1]);
+	game = map_validation(argv[1]);
+    //creating_visual(game);
+
+    print_struct_content(game);
 }

@@ -48,3 +48,39 @@ void	map_content_check(char *map)
 	if (player != 1 || exit != 1 || coins < 1)
 		error_msg("Error in content quantity");
 }
+
+void is_vertical(t_game *game)
+{
+    size_t  i;
+
+    i = 0;
+    while (game->grid[i])
+    {
+        if (game->grid[i][0] != '1')
+            error_msg("The map has empty space in walls");
+        if (game->grid[i][game->width - 1] != '1')
+            error_msg("The map has empty space in walls");
+        i++;
+    }
+}
+
+void is_horizontal(t_game *game)
+{
+    size_t i;
+
+    i = 0;
+    while (game->grid[0][i])
+    {
+        if (game->grid[0][i] != '1')
+            error_msg("The map has empty space in walls");
+        if (game->grid[game->height - 1][0] != '1')
+            error_msg("The map has empty space in walls");
+        i++;
+    }
+}
+
+void are_walls(t_game *game)
+{
+    is_vertical(game);
+    is_horizontal(game);
+}
