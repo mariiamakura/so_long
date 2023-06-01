@@ -41,10 +41,21 @@ t_game	*map_validation(char *map)
 int	main(int argc, char **argv)
 {
     t_game *game;
+    t_img *image;
+
 	if (argc != 2)
 		error_msg("Just give me a map! :(");
 	game = map_validation(argv[1]);
-    //creating_visual(game);
+    game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS,
+                         "so_long", false);
+    if (!game->mlx)
+        return (EXIT_FAILURE);
+    image = initialize_image_struct(game->mlx); //not finished
+    game->img = image;
+    fill_background(game);
+    //
+    mlx_loop(game->mlx);
+    mlx_terminate(game->mlx);
 
-    print_struct_content(game);
+    //print_struct_content(game);
 }

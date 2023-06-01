@@ -19,3 +19,14 @@ t_game *initialize_game(char **map_as_arr)
     //load player texture
     return (game);
 }
+
+t_img *initialize_image_struct(mlx_t *mlx)
+{
+    t_img *image;
+
+    image = (t_img *) ft_calloc(1, sizeof(t_img));
+    if (!image)
+        return (NULL);
+    image = load_floor_texture(mlx, image);
+    return (image);
+}
