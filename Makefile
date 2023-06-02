@@ -1,38 +1,53 @@
 COLOUR_GREEN=\033[0;32m
+COLOUR_END=\033[0;0m
 
 NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/MLX42
 
-LIBFT = ./lib/libft/libft.a
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-MLX42	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS_SO_LONG	:= $(shell find ./src -iname "*.c")
-OBJS_SO_LONG	:= ${SRCS_SO_LONG:.c=.o}
+LIBMLX			:= lib/MLX42
+LIBMLX_INCLUDE	:= -I ./include -I $(LIBMLX)/include
+LIBMLX_CFLAGS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-all: libmlx $(NAME)
+LIBFT 			:= lib/libft
+LIBFT_CFLAGS	:= $(LIBFT)/libft.a
+
+INPUT	:= $(shell find ./src -iname "*.c")
+OUTPUT	:= ${INPUT:.c=.o}
 
 libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@echo "Building libmlx library"
+	@cd $(LIBMLX) && cmake -B build && make -C build -j4
+
+libmlx_clean:
+	@echo "Cleaning libmlx library"
+	@cd $(LIBMLX) && cmake --build build --target clean
+
+libft:
+	@echo "Building libft library"
+	@cd $(LIBFT) && make all
+
+libft_clean:
+	@echo "Cleaning libft library"
+	@cd $(LIBFT) && make fclean
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@echo "$(COLOUR_GREEN)Building C object $(notdir $<).o$(COLOUR_END)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(LIBMLX_INCLUDE)
 
-$(NAME): $(LIBFT) $(OBJS_SO_LONG)
-	@$(CC) $(OBJS_SO_LONG) $(LIBFT) $(MLX42) $(HEADERS) -o $(NAME)
-	@echo "$(COLOUR_GREEN)so_long is done$(COLOUR_END)"
+$(NAME): libmlx libft $(OUTPUT)
+	@echo "Building $(NAME) application"
+	@$(CC) $(OUTPUT) $(LIBFT_CFLAGS) $(LIBMLX_CFLAGS) $(LIBMLX_INCLUDE) -o $(NAME)
 
-$(LIBFT):
-	@cd lib/libft && make all
+all: $(NAME)
+	@echo "$(COLOUR_GREEN)BUILD SUCCESSFUL$(COLOUR_END)"
 
-clean:
-	@rm -f $(OBJS_SO_LONG)
-	@rm -fr $(LIBMLX)/build
-	@cd lib/libft && make clean
+clean: libmlx_clean libft_clean
+	@echo "Cleaning C objects"
+	@rm -f $(OUTPUT)
 
 fclean: clean
+	@echo "Cleaning $(NAME) application"
 	@rm -f $(NAME)
-	@cd lib/libft && make fclean
 
 run: all
 	./$(NAME) $(ARGS)
