@@ -16,7 +16,7 @@ t_game *initialize_game(char **map_as_arr)
     game->player_y = coordinates('P', game, 'y');
     game->exit_x = coordinates('E', game, 'x');
     game->exit_y = coordinates('E', game, 'y');
-    //load player texture
+    load_animated_player(game);
     return (game);
 }
 
@@ -32,5 +32,7 @@ t_img *initialize_image_struct(mlx_t *mlx)
     image = load_coins_texture(mlx, image);
     image = load_player_texture(mlx, image);
     image = load_enemy_texture(mlx, image);
+    image = load_exit_closed_texture(mlx, image);
+    image = load_exit_opened_texture(mlx, image);
     return (image);
 }

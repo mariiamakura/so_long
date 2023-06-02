@@ -601,6 +601,17 @@ void mlx_delete_xpm42(xpm_t* xpm);
  */
 mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
 
+/**
+ * Draws the texture on an already existing image.
+ *
+ * @param[in] image The image to draw on.
+ * @param[in] texture The texture to use to draw on the image.
+ * @param[in] x X position relative to the image.
+ * @param[in] y Y position relative to the image.
+ * @return In-case of any issues, false else true.
+ */
+bool mlx_draw_texture(mlx_image_t* image, mlx_texture_t* texture, uint32_t x, uint32_t y);
+
 //= Image Functions =//
 
 /**
@@ -614,6 +625,7 @@ mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
  * @param[in] y The Y coordinate position.
  * @param[in] color The color value to put.
  */
+
 void mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
 
 /**

@@ -53,7 +53,10 @@ int	main(int argc, char **argv)
     image = initialize_image_struct(game->mlx); //not finished
     game->img = image;
     fill_background(game);
-    //
+    put_images(game);
+    score_to_image(game);
+    mlx_key_hook(game->mlx, move_hook, game);
+    mlx_loop_hook(game->mlx, enemy_patrol, game);
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
 

@@ -20,6 +20,17 @@
 #include "../libft/libft.h"
 
 # define PIXELS 64
+# define ELOOP 35
+
+//for random movements of enemies
+typedef struct s_var {
+    int				run_x;
+    int				run_y;
+    int				*x;
+    int				*y;
+    int				index_x;
+    int				index_y;
+}	t_var;
 
 //image struct
 typedef struct s_img
@@ -29,6 +40,12 @@ typedef struct s_img
     mlx_image_t *coins;
     mlx_image_t *player;
     mlx_image_t *enemy;
+    mlx_image_t *exit_closed;
+    mlx_image_t *exit_opened;
+    mlx_image_t *moves_print;
+    mlx_image_t *moves_num;
+    mlx_image_t *coins_num;
+
 } t_img;
 
 //content struct
@@ -100,8 +117,39 @@ t_img *load_coins_texture(mlx_t *mlx, t_img *img);
 t_img *load_player_texture(mlx_t *mlx, t_img *img);
 t_img *load_enemy_texture(mlx_t *mlx, t_img *img);
 
+//load_animated_sprites.c
+t_img *load_exit_closed_texture(mlx_t *mlx, t_img *img);
+t_img *load_exit_opened_texture(mlx_t *mlx, t_img *img);
+void load_animated_player(t_game *game);
+
 //fill_map_with_image.c
 void    fill_background(t_game *game);
+void put_images(t_game *game);
+void choose_images(t_game *game, size_t y, size_t x);
+
+//score_to_image.c
+void score_to_image(t_game *game);
+void print_coins(t_game *game);
+void print_moves(t_game *game);
+void check_game_status(t_game *game);
+
+//moves.c
+void move_hook(mlx_key_data_t keydata, void *data);
+void move_image(t_game *game, char coordinate, char direction);
+void move_player(t_game *game, char coordinate, char direction);
+void     player_animation(t_game *game, char direction);
+
+//directions.c
+void remove_coins(t_game *game, int y,int x);
+t_game *move_up(t_game *game);
+t_game *move_down(t_game *game);
+t_game *move_right(t_game *game);
+t_game *move_left(t_game *game);
+
+//enemy.c
+void enemy_patrol(void *temp);
+void check_status(const t_game *game);
+void move_enemy(const t_game *game, int count);
 
 //MY PRINTS DELETE
 void print_struct_content(t_game *game);
