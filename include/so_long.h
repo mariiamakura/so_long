@@ -19,7 +19,7 @@
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
 
-# define PIXELS 64
+# define CELL_SIZE 64
 # define ELOOP 35
 
 //for random movements of enemies

@@ -7,8 +7,8 @@ void check_status(const t_game *game)
     count = 0;
     while (count < game->img->enemy->count)
     {
-        if (game->player_x * PIXELS == (size_t)game->img->enemy->instances[count].x
-        && game->player_y * PIXELS == (size_t)game->img->enemy->instances[count].y)
+        if (game->player_x * CELL_SIZE == (size_t)game->img->enemy->instances[count].x
+        && game->player_y * CELL_SIZE == (size_t)game->img->enemy->instances[count].y)
         {
             sleep(1);
             mlx_close_window(game->mlx);
@@ -24,14 +24,14 @@ void move_enemy(const t_game *game, int count)
 
     var.x = &game->img->enemy->instances[count].x;
     var.y = &game->img->enemy->instances[count].y;
-    var.run_x = (rand() % 3 - 1) * 64;
-    var.run_y = (rand() % 3 - 1) * 64;
+    var.run_x = (rand() % 3 - 1) * CELL_SIZE;
+    var.run_y = (rand() % 3 - 1) * CELL_SIZE;
     var.index_x = *var.x + var.run_x;
     var.index_y = *var.y + var.run_y;
     if (var.index_x != 0)
-        var.index_x /= PIXELS;
+        var.index_x /= CELL_SIZE;
     if (var.index_y != 0)
-        var.index_y /= PIXELS;
+        var.index_y /= CELL_SIZE;
     if (game->grid[var.index_y][var.index_x] != '1'
         && game->grid[var.index_y][var.index_x] != 'E')
     {

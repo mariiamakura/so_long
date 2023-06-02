@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_msg("Just give me a map! :(");
 	game = map_validation(argv[1]);
-    game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS,
+    game->mlx = mlx_init(game->width * CELL_SIZE, game->height * CELL_SIZE,
                          "so_long", false);
     if (!game->mlx)
         return (EXIT_FAILURE);

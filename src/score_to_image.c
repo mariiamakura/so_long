@@ -35,7 +35,7 @@ void check_game_status(t_game *game)
     if (game->collected == game->coins)
     {
         if (mlx_image_to_window(game->mlx, game->img->exit_opened,
-                                game->exit_x * PIXELS, game->exit_y * PIXELS) < 0)
+                                game->exit_x * CELL_SIZE, game->exit_y * CELL_SIZE) < 0)
             error_msg("Failed to put opened exit to window");
         game->grid[game->exit_y][game->exit_x] = '0';
         if (game->player_x == game->exit_x && game->player_y == game->exit_y)
