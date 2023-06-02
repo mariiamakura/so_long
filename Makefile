@@ -4,7 +4,7 @@ NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./lib/MLX42
 
-LIBFT = ./libft/libft.a
+LIBFT = ./lib/libft/libft.a
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 MLX42	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS_SO_LONG	:= $(shell find ./src -iname "*.c")
@@ -25,16 +25,16 @@ $(NAME): $(LIBFT) $(OBJS_SO_LONG) $(OBJS_LINE)
 	@echo "$(COLOUR_GREEN)so_long is done$(COLOUR_END)"
 
 $(LIBFT):
-	@cd libft && make all
+	@cd lib/libft && make all
 
 clean:
 	@rm -f $(OBJS_SO_LONG) #$(OBJS_LINE)
 	@rm -fr $(LIBMLX)/build
-	@cd libft && make clean
+	@cd lib/libft && make clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@cd libft && make fclean
+	@cd lib/libft && make fclean
 
 run: all
 	./$(NAME) $(ARGS)

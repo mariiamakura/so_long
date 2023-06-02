@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "../lib/MLX42/include/MLX42/MLX42.h"
-#include "../libft/libft.h"
+#include "../lib/libft/libft.h"
 
 # define PIXELS 64
 # define ELOOP 35
