@@ -22,6 +22,11 @@
 # define CELL_SIZE 64
 # define ELOOP 35
 
+typedef struct s_point {
+    int32_t x;
+    int32_t y;
+} t_point;
+
 //for random movements of enemies
 typedef struct s_var {
     int				run_x;
@@ -134,17 +139,7 @@ void print_moves(t_game *game);
 void check_game_status(t_game *game);
 
 //moves.c
-void move_hook(mlx_key_data_t keydata, void *data);
-void move_image(t_game *game, char coordinate, char direction);
-void move_player(t_game *game, char coordinate, char direction);
-void     player_animation(t_game *game, char direction);
-
-//directions.c
-void remove_coins(t_game *game, int y,int x);
-t_game *move_up(t_game *game);
-t_game *move_down(t_game *game);
-t_game *move_right(t_game *game);
-t_game *move_left(t_game *game);
+void process_key_callback(mlx_key_data_t key_data, void *data);
 
 //enemy.c
 void enemy_patrol(void *temp);

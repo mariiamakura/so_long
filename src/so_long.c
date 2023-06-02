@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
     fill_background(game);
     put_images(game);
     score_to_image(game);
-    mlx_key_hook(game->mlx, move_hook, game);
+    mlx_key_hook(game->mlx, process_key_callback, game);
     mlx_loop_hook(game->mlx, enemy_patrol, game);
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
