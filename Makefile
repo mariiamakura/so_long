@@ -37,7 +37,7 @@ fclean: clean
 	@cd libft && make fclean
 
 run: all
-	./$(NAME) maps/map1.ber
+	./$(NAME) $(ARGS)
 
 re: clean all
 
