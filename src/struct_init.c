@@ -28,5 +28,9 @@ t_img *initialize_image_struct(mlx_t *mlx)
     if (!image)
         return (NULL);
     image = load_floor_texture(mlx, image);
+    image = load_bush_texture(mlx, image);
+    image = load_coins_texture(mlx, image);
+    image = load_player_texture(mlx, image);
+    image = load_enemy_texture(mlx, image);
     return (image);
 }

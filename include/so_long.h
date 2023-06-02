@@ -25,6 +25,10 @@
 typedef struct s_img
 {
     mlx_image_t *floor;
+    mlx_image_t *bush;
+    mlx_image_t *coins;
+    mlx_image_t *player;
+    mlx_image_t *enemy;
 } t_img;
 
 //content struct
@@ -89,8 +93,12 @@ void path_check_begin(t_game *game);
 int path_check_algo(t_game *temp, size_t y, size_t x);
 void free_game_struct_copy(char **grid, size_t height);
 
-//load_image.c
+//load_basic_sprites.c
 t_img *load_floor_texture(mlx_t *mlx, t_img *img);
+t_img *load_bush_texture(mlx_t *mlx, t_img *img);
+t_img *load_coins_texture(mlx_t *mlx, t_img *img);
+t_img *load_player_texture(mlx_t *mlx, t_img *img);
+t_img *load_enemy_texture(mlx_t *mlx, t_img *img);
 
 //fill_map_with_image.c
 void    fill_background(t_game *game);
