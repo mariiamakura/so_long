@@ -1,5 +1,6 @@
 .idea/
 
-*.o
-*.a
+build/
+lib/libft/libft.a
+lib/libft/all_functions
 so_long
