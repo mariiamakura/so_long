@@ -1,21 +1,5 @@
 #include "../include/so_long.h"
 
-void check_status(const t_game *game)
-{
-    int32_t x = (int32_t) game->player->position.x * CELL_SIZE;
-    int32_t y = (int32_t) game->player->position.y * CELL_SIZE;
-
-    int index = 0;
-    while (index < game->img->enemy->count) {
-        mlx_instance_t enemy_instance = game->img->enemy->instances[index];
-        if (x == enemy_instance.x && y == enemy_instance.y) {
-            mlx_close_window(game->mlx);
-            write(1, "You were eaten :(\n", 19);
-        }
-        index++;
-    }
-}
-
 void move_enemy(const t_game *game, int count)
 {
     t_var   var;
@@ -44,7 +28,6 @@ void enemy_patrol(void *temp)
     int count;
 
     count = 0;
-    check_status(game);
     while (count < game->img->enemy->count)
     {
         move_enemy(game, count);

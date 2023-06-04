@@ -135,7 +135,6 @@ void process_key_callback(mlx_key_data_t key_data, void *data);
 
 //enemy.c
 void enemy_patrol(void *temp);
-void check_status(const t_game *game);
 void move_enemy(const t_game *game, int count);
 
 //MY PRINTS DELETE

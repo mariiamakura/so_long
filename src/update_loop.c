@@ -2,7 +2,7 @@
 
 #define TICK_DELAY 0.1 //s
 #define PLAYER_DELAY 3 //s
-#define ENEMY_DELAY 5 //s
+#define ENEMY_DELAY 10 //s
 
 void tick_callback(t_game *game);
 
