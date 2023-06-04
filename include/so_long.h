@@ -20,7 +20,6 @@
 #include "../lib/libft/libft.h"
 
 # define CELL_SIZE 64
-# define ELOOP 100
 
 typedef struct s_point {
     int32_t x;

@@ -42,16 +42,12 @@ void enemy_patrol(void *temp)
 {
     const t_game    *game = temp;
     int count;
-    static int  i;
 
     count = 0;
     check_status(game);
-    if (i++ < ELOOP)
-        return ;
     while (count < game->img->enemy->count)
     {
         move_enemy(game, count);
         count++;
     }
-    i = 0;
 }

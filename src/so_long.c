@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "update_loop.h"
 
 
 t_game	*map_validation(char *map)
@@ -56,7 +57,7 @@ int	main(int argc, char **argv)
     put_images(game);
     score_to_image(game);
     mlx_key_hook(game->mlx, process_key_callback, game);
-    mlx_loop_hook(game->mlx, enemy_patrol, game);
+    mlx_loop_hook(game->mlx, mlx_loop_hook_callback, game);
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
 
