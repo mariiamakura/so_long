@@ -33,5 +33,6 @@ void tick_callback(t_game *game) {
         enemy_elapsed_tick -= ENEMY_DELAY;
         enemy_patrol(game);
     }
+    repaint_status_bar(game);
     check_game_status(game);
 }

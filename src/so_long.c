@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
     game->img = image;
     fill_background(game);
     put_images(game);
-    score_to_image(game);
     mlx_key_hook(game->mlx, process_key_callback, game);
     mlx_loop_hook(game->mlx, mlx_loop_hook_callback, game);
     mlx_loop(game->mlx);

@@ -50,9 +50,10 @@ typedef struct s_img
     mlx_image_t *enemy;
     mlx_image_t *exit_closed;
     mlx_image_t *exit_opened;
-    mlx_image_t *moves_print;
-    mlx_image_t *moves_num;
-    mlx_image_t *coins_num;
+    mlx_image_t *moves_label;
+    mlx_image_t *moves_text;
+    mlx_image_t *coins_label;
+    mlx_image_t *coins_text;
 } t_img;
 
 typedef struct s_player {
@@ -124,10 +125,9 @@ void    fill_background(t_game *game);
 void put_images(t_game *game);
 void choose_images(t_game *game, u_int16_t y, u_int16_t x);
 
-//score_to_image.c
-void score_to_image(t_game *game);
-void print_coins(t_game *game);
-void print_moves(t_game *game);
+//repaint.c
+void repaint_status_bar(t_game *game);
+
 void check_game_status(t_game *game);
 
 //moves.c

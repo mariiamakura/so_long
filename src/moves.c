@@ -73,8 +73,6 @@ void remove_coin(t_game *game, t_point position) {
     }
     game->grid[position.y][position.x] = '0';
     game->collected += 1;
-
-    print_coins(game);
 }
 
 void move_player(t_game *game, t_point position) {
