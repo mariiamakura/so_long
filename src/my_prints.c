@@ -14,10 +14,10 @@ void print_struct_content(t_game *game)
     printf("height: %zu\n", game->height);
     printf("steps: %zu\n", game->steps);
     printf("coins: %zu\n", game->coins);
-    printf("player_x: %zu\n", game->player_x);
-    printf("player_y: %zu\n", game->player_y);
-    printf("exit_x: %zu\n", game->exit_x);
-    printf("exit_y: %zu\n", game->exit_y);
+    printf("player_x: %d\n", game->player->position.x);
+    printf("player_y: %d\n", game->player->position.y);
+    printf("exit_x: %d\n", game->exit_position.x);
+    printf("exit_y: %d\n", game->exit_position.y);
 }
 
 //pass searching algorithm

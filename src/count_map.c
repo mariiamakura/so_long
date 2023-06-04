@@ -32,27 +32,22 @@ size_t count_coins(t_game *game)
     return (coins);
 }
 
-size_t coordinates(char item, t_game *game, char coordinate_c)
-{
-    size_t y;
-    size_t x;
+t_point coordinates(char item, t_game *game) {
+    int32_t y;
+    int32_t x;
+    int32_t height = (u_int16_t) game->height;
+    int32_t width = (u_int16_t) game->width;
 
     y = 0;
-    while (y < game->height)
-    {
+    while (y < height) {
         x = 0;
-        while (x < game->width)
-        {
-            if (game->grid[y][x] == item)
-            {
-                if (coordinate_c == 'y')
-                    return (y);
-                else
-                    return (x);
+        while (x < width) {
+            if (game->grid[y][x] == item) {
+                return (t_point) {x, y};
             }
             x++;
         }
         y++;
     }
-    return (0);
+    return (t_point) {0, 0};
 }

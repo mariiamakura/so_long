@@ -44,7 +44,7 @@ void process_player_movement_keys(t_game *game, mlx_key_data_t key_data) {
 }
 
 void process_player_movement(t_game *game, t_point direction) {
-    t_point old_position = {(int32_t) game->player_x, (int32_t) game->player_y};
+    t_point old_position = game->player->position;
     t_point new_position = {old_position.x + direction.x, old_position.y + direction.y};
 
     char map_cell = game->grid[new_position.y][new_position.x];
@@ -78,21 +78,23 @@ void remove_coin(t_game *game, t_point position) {
 }
 
 void move_player(t_game *game, t_point position) {
-    game->player_x = position.x;
-    game->player_y = position.y;
-    game->img->player->instances[0].x = position.x * CELL_SIZE;
-    game->img->player->instances[0].y = position.y * CELL_SIZE;
+    int32_t x = position.x * CELL_SIZE;
+    int32_t y = position.y * CELL_SIZE;
+
+    game->player->position = position;
+    game->img->player->instances[0].x = x;
+    game->img->player->instances[0].y = y;
     game->steps += 1;
 }
 
 void player_animation(t_game *game, t_point direction) {
     if (direction.y < 0) {
-        mlx_draw_texture(game->img->player, game->player_up, 0, 0);
+        mlx_draw_texture(game->img->player, game->img->player_up, 0, 0);
     } else if (direction.y > 0) {
-        mlx_draw_texture(game->img->player, game->player_down, 0, 0);
+        mlx_draw_texture(game->img->player, game->img->player_down, 0, 0);
     } else if (direction.x > 0) {
-        mlx_draw_texture(game->img->player, game->player_right, 0, 0);
+        mlx_draw_texture(game->img->player, game->img->player_right, 0, 0);
     } else if (direction.x < 0) {
-        mlx_draw_texture(game->img->player, game->player_left, 0, 0);
+        mlx_draw_texture(game->img->player, game->img->player_left, 0, 0);
     }
 }

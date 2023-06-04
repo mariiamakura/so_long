@@ -2,19 +2,17 @@
 
 void check_status(const t_game *game)
 {
-    int count;
+    int32_t x = (int32_t) game->player->position.x * CELL_SIZE;
+    int32_t y = (int32_t) game->player->position.y * CELL_SIZE;
 
-    count = 0;
-    while (count < game->img->enemy->count)
-    {
-        if (game->player_x * CELL_SIZE == (size_t)game->img->enemy->instances[count].x
-        && game->player_y * CELL_SIZE == (size_t)game->img->enemy->instances[count].y)
-        {
-            sleep(1);
+    int index = 0;
+    while (index < game->img->enemy->count) {
+        mlx_instance_t enemy_instance = game->img->enemy->instances[index];
+        if (x == enemy_instance.x && y == enemy_instance.y) {
             mlx_close_window(game->mlx);
             write(1, "You were eaten :(\n", 19);
         }
-        count++;
+        index++;
     }
 }
 

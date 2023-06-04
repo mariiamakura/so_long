@@ -20,7 +20,7 @@
 #include "../lib/libft/libft.h"
 
 # define CELL_SIZE 64
-# define ELOOP 35
+# define ELOOP 100
 
 typedef struct s_point {
     int32_t x;
@@ -44,34 +44,34 @@ typedef struct s_img
     mlx_image_t *bush;
     mlx_image_t *coins;
     mlx_image_t *player;
+    mlx_texture_t *player_up;
+    mlx_texture_t *player_down;
+    mlx_texture_t *player_left;
+    mlx_texture_t *player_right;
     mlx_image_t *enemy;
     mlx_image_t *exit_closed;
     mlx_image_t *exit_opened;
     mlx_image_t *moves_print;
     mlx_image_t *moves_num;
     mlx_image_t *coins_num;
-
 } t_img;
 
+typedef struct s_player {
+    t_point position;
+} t_player;
+
 //content struct
-typedef struct s_game
-{
-	char			**grid;
-	size_t			width;
-	size_t			height;
-	size_t			coins;
-	size_t			steps;
-	size_t			collected;
-	size_t			player_x; //link_x
-	size_t			player_y; //link_y
-	size_t			exit_x;
-	size_t			exit_y;
-	mlx_texture_t	*player_up;
-	mlx_texture_t	*player_down;
-	mlx_texture_t	*player_left;
-	mlx_texture_t	*player_right;
-	t_img			*img;
-	mlx_t			*mlx;
+typedef struct s_game {
+    char **grid;
+    size_t width;
+    size_t height;
+    size_t coins;
+    size_t steps;
+    size_t collected;
+    t_player *player;
+    t_point exit_position;
+    t_img *img;
+    mlx_t *mlx;
 }	t_game;
 
 
@@ -103,29 +103,22 @@ void    is_horizontal(t_game *game);
 
 //struct_init.c
 t_game *initialize_game(char **map_as_arr);
+
 t_img *initialize_image_struct(mlx_t *mlx);
 
 //count_map.c
 size_t row_count(char **map_as_arr);
+
 size_t count_coins(t_game *game);
-size_t coordinates(char item, t_game *game, char coordinate_c);
+
+t_point coordinates(char item, t_game *game);
 
 //path_check.c
 void path_check_begin(t_game *game);
-int path_check_algo(t_game *temp, size_t y, size_t x);
+
+int path_check_algo(t_game *temp, size_t x, size_t y);
+
 void free_game_struct_copy(char **grid, size_t height);
-
-//load_basic_sprites.c
-t_img *load_floor_texture(mlx_t *mlx, t_img *img);
-t_img *load_bush_texture(mlx_t *mlx, t_img *img);
-t_img *load_coins_texture(mlx_t *mlx, t_img *img);
-t_img *load_player_texture(mlx_t *mlx, t_img *img);
-t_img *load_enemy_texture(mlx_t *mlx, t_img *img);
-
-//load_animated_sprites.c
-t_img *load_exit_closed_texture(mlx_t *mlx, t_img *img);
-t_img *load_exit_opened_texture(mlx_t *mlx, t_img *img);
-void load_animated_player(t_game *game);
 
 //fill_map_with_image.c
 void    fill_background(t_game *game);
