@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
 
-size_t row_count(char **map_as_arr)
+u_int16_t row_count(char **map_as_arr)
 {
     int i;
 
@@ -10,11 +10,11 @@ size_t row_count(char **map_as_arr)
     return (i);
 }
 
-size_t count_coins(t_game *game)
+u_int16_t count_coins(t_game *game)
 {
-    size_t coins;
-    size_t x;
-    size_t y;
+    u_int16_t coins;
+    u_int16_t x;
+    u_int16_t y;
 
     coins = 0;
     y = 0;
@@ -35,8 +35,8 @@ size_t count_coins(t_game *game)
 t_point coordinates(char item, t_game *game) {
     int32_t y;
     int32_t x;
-    int32_t height = (u_int16_t) game->height;
-    int32_t width = (u_int16_t) game->width;
+    int32_t height = game->height;
+    int32_t width = game->width;
 
     y = 0;
     while (y < height) {

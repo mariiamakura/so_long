@@ -62,11 +62,11 @@ typedef struct s_player {
 //content struct
 typedef struct s_game {
     char **grid;
-    size_t width;
-    size_t height;
-    size_t coins;
-    size_t steps;
-    size_t collected;
+    u_int16_t width;
+    u_int16_t height;
+    u_int16_t coins;
+    u_int16_t steps;
+    u_int16_t collected;
     t_player *player;
     t_point exit_position;
     t_img *img;
@@ -106,23 +106,23 @@ t_game *initialize_game(char **map_as_arr);
 t_img *initialize_image_struct(mlx_t *mlx);
 
 //count_map.c
-size_t row_count(char **map_as_arr);
+u_int16_t row_count(char **map_as_arr);
 
-size_t count_coins(t_game *game);
+u_int16_t count_coins(t_game *game);
 
 t_point coordinates(char item, t_game *game);
 
 //path_check.c
 void path_check_begin(t_game *game);
 
-int path_check_algo(t_game *temp, size_t x, size_t y);
+int path_check_algo(t_game *temp, u_int16_t x, u_int16_t y);
 
-void free_game_struct_copy(char **grid, size_t height);
+void free_game_struct_copy(char **grid, u_int16_t height);
 
 //fill_map_with_image.c
 void    fill_background(t_game *game);
 void put_images(t_game *game);
-void choose_images(t_game *game, size_t y, size_t x);
+void choose_images(t_game *game, u_int16_t y, u_int16_t x);
 
 //score_to_image.c
 void score_to_image(t_game *game);

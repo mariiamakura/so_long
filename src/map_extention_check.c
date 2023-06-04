@@ -26,7 +26,7 @@ void	map_is_empty(char *map)
 
 void	map_has_empty_lines(char *map)
 {
-	size_t	i;
+	u_int16_t	i;
 
 	i = 0;
 	while (map[i])
@@ -39,8 +39,8 @@ void	map_has_empty_lines(char *map)
 
 void	map_shape_check(char **map_arr)
 {
-	size_t	i;
-	size_t	len;
+	u_int16_t	i;
+	u_int16_t	len;
 
 	i = 0;
 	len = ft_strlen(map_arr[0]);

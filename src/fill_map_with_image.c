@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
 
-void choose_images(t_game *game, size_t y, size_t x)
+void choose_images(t_game *game, u_int16_t y, u_int16_t x)
 {
     if (game->grid[y][x] == '1')
         if (mlx_image_to_window(game->mlx, game->img->bush,
@@ -26,8 +26,8 @@ void choose_images(t_game *game, size_t y, size_t x)
 
 void    fill_background(t_game *game)
 {
-    size_t x;
-    size_t  y;
+    u_int16_t x;
+    u_int16_t  y;
 
     y = 0;
     while (y < game->height)
@@ -46,8 +46,8 @@ void    fill_background(t_game *game)
 
 void put_images(t_game *game)
 {
-    size_t y;
-    size_t x;
+    u_int16_t y;
+    u_int16_t x;
 
     y = 0;
     while (y < game->height)

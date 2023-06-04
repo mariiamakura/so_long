@@ -51,7 +51,7 @@ void	map_content_check(char *map)
 
 void is_vertical(t_game *game)
 {
-    size_t  i;
+    u_int16_t  i;
 
     i = 0;
     while (game->grid[i])
@@ -66,7 +66,7 @@ void is_vertical(t_game *game)
 
 void is_horizontal(t_game *game)
 {
-    size_t i;
+    u_int16_t i;
 
     i = 0;
     while (game->grid[0][i])

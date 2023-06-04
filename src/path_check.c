@@ -1,8 +1,8 @@
 #include "../include/so_long.h"
 
-void free_game_struct_copy(char **grid, size_t height)
+void free_game_struct_copy(char **grid, u_int16_t height)
 {
-    size_t  i;
+    u_int16_t  i;
 
     i = 0;
     while (i < height)
@@ -13,7 +13,7 @@ void free_game_struct_copy(char **grid, size_t height)
     free(grid);
 }
 
-int path_check_algo(t_game *temp, size_t x, size_t y) {
+int path_check_algo(t_game *temp, u_int16_t x, u_int16_t y) {
     if (temp->grid[y][x] == '1')
         return (0);
     if (temp->grid[y][x] == 'C')
@@ -38,7 +38,7 @@ int path_check_algo(t_game *temp, size_t x, size_t y) {
 void path_check_begin(t_game *game)
 {
     t_game temp;
-    size_t i;
+    u_int16_t i;
 
     i = 0;
     temp.height = game->height;

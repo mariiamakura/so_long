@@ -10,10 +10,10 @@ void print_2d_array(char **map_as_arr)
 
 void print_struct_content(t_game *game)
 {
-    printf("width: %zu\n", game->width);
-    printf("height: %zu\n", game->height);
-    printf("steps: %zu\n", game->steps);
-    printf("coins: %zu\n", game->coins);
+    printf("width: %d\n", game->width);
+    printf("height: %d\n", game->height);
+    printf("steps: %d\n", game->steps);
+    printf("coins: %d\n", game->coins);
     printf("player_x: %d\n", game->player->position.x);
     printf("player_y: %d\n", game->player->position.y);
     printf("exit_x: %d\n", game->exit_position.x);
