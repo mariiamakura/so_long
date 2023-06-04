@@ -26,16 +26,6 @@ typedef struct s_point {
     int32_t y;
 } t_point;
 
-//for random movements of enemies
-typedef struct s_var {
-    int				run_x;
-    int				run_y;
-    int				*x;
-    int				*y;
-    int				index_x;
-    int				index_y;
-}	t_var;
-
 //image struct
 typedef struct s_img
 {
@@ -134,8 +124,7 @@ void check_game_status(t_game *game);
 void process_key_callback(mlx_key_data_t key_data, void *data);
 
 //enemy.c
-void enemy_patrol(void *temp);
-void move_enemy(const t_game *game, int count);
+void enemy_patrol(t_game *game);
 
 //MY PRINTS DELETE
 void print_struct_content(t_game *game);
