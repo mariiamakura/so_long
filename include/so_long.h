@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:29 by mparasku          #+#    #+#             */
-/*   Updated: 2023/05/05 15:03:46 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:26:59 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ void process_key_callback(mlx_key_data_t key_data, void *data);
 
 //enemy.c
 void enemy_patrol(t_game *game);
+
+//free_structs.c
+void free_grid(t_game *game);
+void free_game(t_game *game);
 
 //MY PRINTS DELETE
 void print_struct_content(t_game *game);
