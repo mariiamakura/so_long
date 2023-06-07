@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/06/05 15:30:03 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/07 14:49:32 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ t_game	*map_validation(char *map)
     return (game);
 }
 
-/*void creating_visual(t_game *game)
-{
-
-}*/
 
 int	main(int argc, char **argv)
 {
@@ -60,6 +56,4 @@ int	main(int argc, char **argv)
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
 	free_game(game);
-
-    //print_struct_content(game);
 }
