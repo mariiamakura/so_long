@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/06/07 14:49:32 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:26:33 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_game	*map_validation(char *map)
 	map_as_arr = ft_split(map_as_str, '\n');
 	free(map_as_str);
 	map_shape_check(map_as_arr);
-    game = initialize_game(map_as_arr); //grid points to map_as_arr so NO free
+    game = initialize_game(map_as_arr);
     are_walls(game);
     path_check_begin(game);
     return (game);
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		error_msg("Just give me a map! :(");
 	game = map_validation(argv[1]);
     game->mlx = mlx_init(game->width * CELL_SIZE, game->height * CELL_SIZE,
-                         "so_long", false);
+                         "so_long", true);
     if (!game->mlx)
         return (EXIT_FAILURE);
     image = initialize_image_struct(game->mlx); //not finished
