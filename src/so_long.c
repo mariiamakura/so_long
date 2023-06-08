@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/06/07 16:26:33 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:10:36 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		error_msg("Just give me a map! :(");
 	game = map_validation(argv[1]);
     game->mlx = mlx_init(game->width * CELL_SIZE, game->height * CELL_SIZE,
-                         "so_long", true);
+                         "so_long", false);
     if (!game->mlx)
         return (EXIT_FAILURE);
     image = initialize_image_struct(game->mlx); //not finished

@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:21:36 by mparasku          #+#    #+#             */
-/*   Updated: 2023/06/07 14:37:25 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:21:04 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void free_grid(t_game *game)
 
 void delete_image(t_game *game)
 {
-	mlx_delete_image(game->mlx, game->img->floor);
-	mlx_delete_image(game->mlx, game->img->bush);
-	mlx_delete_image(game->mlx, game->img->coins);
-	mlx_delete_image(game->mlx, game->img->player);
-	mlx_delete_image(game->mlx, game->img->enemy);
-	mlx_delete_image(game->mlx, game->img->exit_closed);
-	mlx_delete_image(game->mlx, game->img->enemy);
-	mlx_delete_image(game->mlx, game->img->moves_label);
-	mlx_delete_image(game->mlx, game->img->moves_text);
-	mlx_delete_image(game->mlx, game->img->coins_label);
-	mlx_delete_image(game->mlx, game->img->coins_text);
+	// mlx_delete_image(game->mlx, game->img->floor);
+	// mlx_delete_image(game->mlx, game->img->bush);
+	// mlx_delete_image(game->mlx, game->img->coins);
+	// mlx_delete_image(game->mlx, game->img->player);
+	// mlx_delete_image(game->mlx, game->img->enemy);   //error here
+	// mlx_delete_image(game->mlx, game->img->exit_closed);
+	// mlx_delete_image(game->mlx, game->img->enemy);
+	// mlx_delete_image(game->mlx, game->img->moves_label);
+	// mlx_delete_image(game->mlx, game->img->moves_text);
+	// mlx_delete_image(game->mlx, game->img->coins_label);
+	//mlx_delete_image(game->mlx, game->img->coins_text);
 	mlx_delete_texture(game->img->player_down);
 	mlx_delete_texture(game->img->player_left);
 	mlx_delete_texture(game->img->player_right);
@@ -58,8 +58,8 @@ void free_game(t_game *game)
 	
 	delete_image(game);
 
-	if (game->mlx != NULL)
-		free(game->mlx);
+	// if (game->mlx != NULL)  //error here
+	// 	free(game->mlx);
 	
 	free(game);
 	game = NULL;
