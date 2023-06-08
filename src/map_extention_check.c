@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:19 by mparasku          #+#    #+#             */
-/*   Updated: 2023/05/05 17:02:46 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:16:05 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	map_is_empty(char *map)
 
 void	map_has_empty_lines(char *map)
 {
-	size_t	i;
+	u_int16_t	i;
 
 	i = 0;
 	while (map[i])
 	{
-		if (map[0] == '\n' || (map[i] == '\n' &&map[i + 1] == '\n'))
+		if (map[0] == '\n' || (map[i] == '\n' && map[i + 1] == '\n'))
 			error_msg("Map has empty lines");
 		i++;
 	}
@@ -39,8 +39,8 @@ void	map_has_empty_lines(char *map)
 
 void	map_shape_check(char **map_arr)
 {
-	size_t	i;
-	size_t	len;
+	u_int16_t	i;
+	u_int16_t	len;
 
 	i = 0;
 	len = ft_strlen(map_arr[0]);

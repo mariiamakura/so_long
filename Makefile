@@ -1,44 +1,65 @@
 COLOUR_GREEN=\033[0;32m
+COLOUR_END=\033[0;0m
 
-NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/MLX42
+NAME		:= so_long
+CFLAGS		:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 
-LIBFT = ./libft/libft.a
+LIBMLX			:= lib/MLX42
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 MLX42	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS_SO_LONG	:= $(shell find ./src -iname "*.c")
-OBJS_SO_LONG	:= ${SRCS_SO_LONG:.c=.o}
-#SRCS_LINE	:= $(shell find ./get-next-line -iname "*.c")
-#OBJS_LINE	:= ${SRCS_LINE:.c=.o}
 
-all: libmlx $(NAME)
+LIBFT_DIR 			:= lib/libft
+LIBFT	:= $(LIBFT_DIR)/libft.a
+
+SRC_DIR := src
+OBJ_DIR := build/objects
+SRC_FILES := $(shell find $(SRC_DIR) -name "*.c")
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
+
+CC := cc
+
+.PHONY: all clean fclean re libmlx libft libmlx_clean libft_clean run
+
+all: $(NAME)
+
+$(NAME): libmlx libft $(OBJ_FILES)
+	@echo "Building $(NAME) application"
+	@$(CC) $(CFLAGS) $(HEADERS) -o $(NAME) $(OBJ_FILES) $(LIBFT) $(MLX42)
+	@echo "$(COLOUR_GREEN)BUILD SUCCESSFUL$(COLOUR_END)"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ./include/so_long.h | $(OBJ_DIR)
+	@echo "$(COLOUR_GREEN)Building C object $(notdir $@)$(COLOUR_END)"
+	@$(CC) $(CFLAGS) $(HEADERS) -c -o $@ $<
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 libmlx:
+	@echo "Building libmlx library"
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+libft:
+	@echo "Building libft library"
+	@cd $(LIBFT_DIR) && make all
 
-$(NAME): $(LIBFT) $(OBJS_SO_LONG) $(OBJS_LINE)
-	@$(CC) $(OBJS_SO_LONG) $(LIBFT) $(MLX42) $(HEADERS) -o $(NAME) #$(OBJS_LINE)
-	@echo "$(COLOUR_GREEN)so_long is done$(COLOUR_END)"
-
-$(LIBFT):
-	@cd libft && make all
-
-clean:
-	@rm -f $(OBJS_SO_LONG) #$(OBJS_LINE)
+libmlx_clean:
+	@echo "Cleaning MLX42 objects"
 	@rm -fr $(LIBMLX)/build
-	@cd libft && make clean
+
+libft_clean:
+	@echo "Cleaning libft objects"
+	@cd $(LIBFT_DIR) && make clean
+
+clean: libmlx_clean libft_clean
+	@echo "Cleaning C objects"
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
+	@echo "Cleaning $(NAME) application"
 	@rm -f $(NAME)
-	@cd libft && make fclean
+	@cd $(LIBFT_DIR) && make fclean
 
 run: all
-	./$(NAME) maps/map1.ber
+	@./$(NAME) $(ARGS)
 
-re: clean all
-
-.PHONY: all, clean, fclean, re, libmlx
+re: fclean all

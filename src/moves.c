@@ -1,62 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 18:20:53 by mparasku          #+#    #+#             */
+/*   Updated: 2023/06/08 18:37:26 by mparasku         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-void     player_animation(t_game *game, char direction)
+void	remove_coin(t_game *game, t_point position)
 {
-    if (direction == 'u')
-        mlx_draw_texture(game->img->player, game->player_up, 0, 0);
-    if (direction == 'd')
-        mlx_draw_texture(game->img->player, game->player_down, 0, 0);
-    if (direction == 'r')
-        mlx_draw_texture(game->img->player, game->player_right, 0, 0);
-    if (direction == 'l')
-        mlx_draw_texture(game->img->player, game->player_left, 0, 0);
+	int32_t			x;
+	int32_t			y;
+	mlx_instance_t	*instance;
+	int				index;
+
+	x = position.x * CELL_SIZE;
+	y = position.y * CELL_SIZE;
+	index = 0;
+	while (index < game->img->coins->count)
+	{
+		instance = &game->img->coins->instances[index];
+		if (instance->x == x && instance->y == y)
+			instance->enabled = false;
+		index++;
+	}
+	game->grid[position.y][position.x] = '0';
+	game->collected += 1;
 }
 
-void move_player(t_game *game, char coordinate, char direction)
+void	move_player(t_game *game, t_point position)
 {
-    if (coordinate == 'y')
-    {
-        if (direction == 'u')
-            move_up(game);
-        else
-            move_down(game);
-    }
-    if (coordinate == 'x')
-    {
-        if (direction == 'r')
-            move_right(game);
-        else
-            move_left(game);
-    }
+	int32_t	x;
+	int32_t	y;
+
+	x = position.x * CELL_SIZE;
+	y = position.y * CELL_SIZE;
+	game->player->position = position;
+	game->img->player->instances[0].x = x;
+	game->img->player->instances[0].y = y;
+	game->steps += 1;
 }
 
-void move_image(t_game *game, char coordinate, char direction)
+void	player_animation(t_game *game, t_point direction)
 {
-    move_player(game, coordinate, direction);
-    player_animation(game, direction);
+	if (direction.y < 0)
+		mlx_draw_texture(game->img->player, game->img->player_up, 0, 0);
+	else if (direction.y > 0)
+		mlx_draw_texture(game->img->player, game->img->player_down, 0, 0);
+	else if (direction.x > 0)
+		mlx_draw_texture(game->img->player, game->img->player_right, 0, 0);
+	else if (direction.x < 0)
+		mlx_draw_texture(game->img->player, game->img->player_left, 0, 0);
 }
-
-void move_hook(mlx_key_data_t keydata, void *data)
-{
-    t_game *game;
-
-    game = (t_game *)data;
-    if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-        mlx_close_window(game->mlx);
-    if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-        && keydata.action == MLX_PRESS)
-        move_image(game, 'y', 'u');
-    if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-        && keydata.action == MLX_PRESS)
-        move_image(game, 'x', 'r');
-    if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-        && keydata.action == MLX_PRESS)
-        move_image(game, 'y', 'd');
-    if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-        && keydata.action == MLX_PRESS)
-        move_image(game, 'x', 'l');
-}
-
-
-
-

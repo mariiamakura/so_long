@@ -1,58 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 17:26:11 by mparasku          #+#    #+#             */
+/*   Updated: 2023/06/08 17:27:32 by mparasku         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-size_t row_count(char **map_as_arr)
+u_int16_t	row_count(char **map_as_arr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (map_as_arr[i])
-        i++;
-    return (i);
+	i = 0;
+	while (map_as_arr[i])
+		i++;
+	return (i);
 }
 
-size_t count_coins(t_game *game)
+u_int16_t	count_coins(t_game *game)
 {
-    size_t coins;
-    size_t x;
-    size_t y;
+	u_int16_t	coins;
+	u_int16_t	x;
+	u_int16_t	y;
 
-    coins = 0;
-    y = 0;
-    while (y < game->height)
-    {
-        x = 0;
-        while (x < game->width)
-        {
-            if (game->grid[y][x] == 'C')
-                coins++;
-            x++;
-        }
-        y++;
-    }
-    return (coins);
+	coins = 0;
+	y = 0;
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->width)
+		{
+			if (game->grid[y][x] == 'C')
+				coins++;
+			x++;
+		}
+		y++;
+	}
+	return (coins);
 }
 
-size_t coordinates(char item, t_game *game, char coordinate_c)
+t_point	coordinates(char item, t_game *game)
 {
-    size_t y;
-    size_t x;
+	int32_t	y;
+	int32_t	x;
+	int32_t	height;
+	int32_t	width;
 
-    y = 0;
-    while (y < game->height)
-    {
-        x = 0;
-        while (x < game->width)
-        {
-            if (game->grid[y][x] == item)
-            {
-                if (coordinate_c == 'y')
-                    return (y);
-                else
-                    return (x);
-            }
-            x++;
-        }
-        y++;
-    }
-    return (0);
+	height = game->height;
+	width = game->width;
+	y = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			if (game->grid[y][x] == item)
+				return ((t_point){x, y});
+			x++;
+		}
+		y++;
+	}
+	return ((t_point){0, 0});
 }
