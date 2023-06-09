@@ -6,12 +6,11 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:22:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/06/08 17:15:27 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:52:20 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include "../include/update_loop.h"
 
 t_game	*map_validation(char *map)
 {
