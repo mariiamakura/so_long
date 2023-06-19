@@ -5,8 +5,10 @@ This project is a very small 2D game. Its purpose is to make you work with textu
 
 ```
 make
+```
 
-./so_long maps/map6.ber //valid maps are from map1 to map6
-
+```
+./so_long maps/map6.ber 
+#valid maps are from map1 to map6
 ```
 
