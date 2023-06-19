@@ -11,4 +11,7 @@ valid maps are from map1 to map6
 ./so_long maps/map6.ber 
 ```
 
+
+<p align="center">
 ![scrinshoot](game.gif)
+</p>
